@@ -1,13 +1,17 @@
 <svelte:head>
     <link rel="stylesheet" href="css/main.css">
-    <title>Integrated Health Otago - Home</title>
+    <title>IHO - Home</title>
 </svelte:head>
 
-<script src="js/main.js">
+<script src="lib/index.js">
+    import { onMount } from 'svelte';
+    
+    // Filling an array for all services provided at the company
     let services = [
         {
-            id: "Osteohome",
-            name: "Osteopathy",
+            id: "Osteohome", //ID for each individual service
+            name: "Osteopathy", //The name of the service, this is what is shown on the page
+            //The description of the service, this is what is shown on as a bio on the page
             description: "Osteopathy is a way of detecting, treating and preventing health problems by moving, stretching and massaging a person's muscles and joints. Osteopathy is based on the principle that the wellbeing of an individual depends on their bones, muscles, ligaments and connective tissue functioning smoothly together."
         },
         {
@@ -62,32 +66,35 @@
         }
     ]
 </script>
-```
 
 <main class="home-container">
-    <header id="navigator" data-role="Accordion" class="home-header">
-        <img alt="logo" src="resources/WebsiteLogo.png" class="home-image">
-        <hr>
-        <nav id="navigationMenu" class="home-nav">
-            <button id="welcomeButton" class="nav-button">WELCOME</button>
-            <button id="ourteamButton" class="nav-button">OUR TEAM</button>
-            <button id="servicesButton" class="nav-button">SERVICES</button>
-            <button id="intouchButton" class="nav-button">GET IN TOUCH</button>
-            <button id="joinButton" class="nav-button">JOIN OUR TEAM</button>
-        </nav>
-    </header>
 
+    <!--The Hero Section-->
     <section class="home-hero">
-        <h1>Here, Every BODY matters!</h1>
-        <p>Here at Integrated Health Otago, we strive to be the best in the business. We offer a wide range of health care services to help you get back to good health.</p>
+        <h1 class="home-hero-header">Here, Every BODY matters!</h1>
+        <p class="home-hero-desc">Here at Integrated Health Otago, we strive to be the best in the business. We offer a wide range of health care services to help you get back to good health.</p>
     </section>
 
+    <!--The About Section-->
     <section class="about-section">
         <h1 class="about-header">About Us</h1>
-        <p class="about-text">Integrated Health Otago was established in 2014 by Jim, after over a decade of planning a health care service that addresses the specific needs of each individual client with both acute and chronic conditions. Jim is qualified as an Osteopath, Physiotherapist and Digestive Health Practitioner who has worked in the public and private sectors as well as with high profile football teams and elite British Athletes.</p>
-        <p class="about-text">Jim’s vision was to combine Osteopathic philosophy, where the body is considered a complex integrated system, with biomechanics, muscle balance and rehabilitative techniques of Physiotherapy. Together with his wife Deb, they have grown IHO to combine allied health services such as digestive health and acupuncture in order to provide a progressive all round health care model that is unique to their clinic.</p>
+        <p class="about-text">
+            Integrated Health Otago was established in 2014 by Jim, after over a decade of 
+            planning a health care service that addresses the specific needs of each individual 
+            client with both acute and chronic conditions. Jim is qualified as an Osteopath, 
+            Physiotherapist, and Digestive Health Practitioner who has worked in the public 
+            and private sectors as well as with high profile football teams and elite British Athletes.
+        </p>
+        <p class="about-text">
+            Jim&#39s vision was to combine Osteopathic philosophy, where the body 
+            is considered a complex integrated system, with biomechanics, muscle balance, and rehabilitative techniques of Physiotherapy. 
+            Together with his wife Deb, they have grown IHO to combine allied health services such as digestive health and acupuncture to 
+            provide a progressive all-around health care model that is unique to their clinic.
+        </p>
     </section>
 
+
+    <!--Services Section-->
     <section class="about-section">
         <h1 class="about-header" style="text-align: center;">Services</h1>
         <br/>
@@ -96,84 +103,18 @@
         <hr class="services-breaker">
 
         <!--Servcies-->
-        <article id="{services[0].id}" class="services-desc">
-            <h2 class="services-desc-title">{services[0].name}</h2>
-            <p class="services-desc-text">{services[0].description}</p>
+        <!--
+            A loop that goes through the services array, takes each of the entries and creates an article for each one, 
+            with each corrosponding field for each itteration of the array
+        -->
+        {#each services as service (service.id)}
+        <article id={service.id} class="services-desc">
+            <h2 class="services-desc-title">{service.name}</h2>
+            <p class="services-desc-text">{service.description}</p>
         </article>
-
+        <br/>
         <hr class="services-breaker">
-
-        <article id="{services[1].id}" class="services-desc">
-            <h2 class="services-desc-title">{services[1].name}</h2>
-            <p class="services-desc-text">{services[1].description}</p>
-        </article>
-
-        <hr class="services-breaker">
-
-        <article id="{services[2].id}" class="services-desc">
-            <h2 class="services-desc-title">{services[2].name}</h2>
-            <p class="services-desc-text">{services[2].description}</p>
-        </article>
-
-        <hr class="services-breaker">
-
-        <article id="{services[3].id}">
-            <h2>{services[3].name}</h2>
-            <p>{services[3].description}</p>
-        </article>
-
-        <hr class="services-breaker">
-
-        <article id="{services[4].id}">
-            <h2>{services[4].name}</h2>
-            <p>{services[4].description}</p>
-        </article>
-
-        <hr class="services-breaker">
-
-        <article id="{services[5].id}">
-            <h2>{services[5].name}</h2>
-            <p>{services[5].description}</p>
-        </article>
-
-        <hr class="services-breaker">
-
-        <article id="{services[6].id}">
-            <h2>{services[6].name}</h2>
-            <p>{services[6].description}</p>
-        </article>
-
-        <hr class="services-breaker">
-
-        <article id="{services[7].id}">
-            <h2>{services[7].name}</h2>
-            <p>{services[7].description}</p>
-        </article>
-
-        <hr class="services-breaker">
-
-        <article id="{services[8].id}">
-            <h2>{services[8].name}</h2>
-            <p>{services[8].description}</p>
-        </article>
-
-        <hr class="services-breaker">
-
-        <article id="{services[9].id}">
-            <h2>{services[9].name}</h2>
-            <p>{services[9].description}</p>
-        </article>
-
-        <hr class="services-breaker">
-
-        <article id="{services[10].id}">
-            <h2>{services[10].name}</h2>
-            <p>{services[10].description}</p>
-        </article>
+        {/each}
     </section>
-
-    <footer class="footer">
-        <p class="footer-content">Integrated Health Otago&#169 2023</p>
-    </footer>
 </main>
 
